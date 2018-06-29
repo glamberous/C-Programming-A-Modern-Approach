@@ -1,4 +1,3 @@
-/*Buns not hot*/
 #include <stdio.h>
 
 int main(void)
