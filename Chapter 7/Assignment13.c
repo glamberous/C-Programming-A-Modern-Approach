@@ -1,3 +1,5 @@
+/* Double Commit */
+
 /* calculates the average word length for a sentence */
 #include <stdio.h>		// for typef & scanf
 #include <ctype.h>		// for toupper
