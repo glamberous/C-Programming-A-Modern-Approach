@@ -1,3 +1,5 @@
+/* Double Commit */
+
 /* Uses Newton's method to compute the square root of a positive floating-point number */
 #include <stdio.h>		// for typef & scanf
 #include <ctype.h>		// for toupper

@@ -1,4 +1,4 @@
-/* Forever testing commits */
+/* Double Commit */
 
 /* program computes the factorial of a positive integer */
 #include <stdio.h>		// for typef & scanf
