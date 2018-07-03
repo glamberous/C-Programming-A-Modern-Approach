@@ -9,36 +9,43 @@ occurance of foo by xxx. For example, the string "food fool" would become
 
 void capitalize (char str[], int n);
 int read_line(char[], int);
-void censor(char[], int);
+void censor (char *, int);
 
 int main (void)
 {
 	char str[STR_LENGTH + 1];
 
 	read_line(str, STR_LENGTH);
-	capitalize(str, STR_LENGTH);
+	censor(str, STR_LENGTH);
 
 	puts(str);
 }
 
 void censor (char str[], int n)
 {
-	char foo = "foo";
-	char *strP = str, *fooP = foo;
-	short count = 0;
+	char const *fooP = "foo";
+	char *strP = str;
+	int count = 0;
 
-	do //Working on this loop still
+	while(*strP != '\0' && strP < str + n)
 	{
-		while(*strP + count == *fooP + count && count < 3)
-			count++;
-
-		if (count = 3)
+		while(*strP + count == *fooP + (count % 3))
 		{
-			*strP + count = 'x';
-			--count;
+			count++;
+		}
+
+		printf("%d", count);
+
+		if (count >= 3)
+		{
+			while(count-- > 0)
+			{
+				*(strP + count) = 'x';
+			}
 		}
 		count = 0;
-	} while(++strP != '\0' && strP < str + n);
+		strP++;
+	}
 }
 
 void capitalize (char str[], int n) // Skips all blank spaces at the start.
