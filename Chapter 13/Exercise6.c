@@ -29,18 +29,18 @@ void censor (char str[], int n)
 
 	while(*strP != '\0' && strP < str + n)
 	{
-		while(*strP + count == *fooP + (count % 3))
+		while(*(strP + count) == *(fooP + (count % 3)))
 		{
 			count++;
 		}
-
-		printf("%d", count);
-
+		
 		if (count >= 3)
 		{
+			count /= 3;
+			count *= 3;
 			while(count-- > 0)
 			{
-				*(strP + count) = 'x';
+				*(strP++) = 'x';
 			}
 		}
 		count = 0;
