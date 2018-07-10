@@ -1,4 +1,4 @@
-/* Write the following function (test_extention) */
+/* Write the following function: void remove_filename(char *url) */
 
 
 #include <stdio.h>		// for typef & scanf
@@ -9,46 +9,24 @@
 #define false 0
 #define STR_LENGTH 100
 
-void get_extension(const char *file_name, char *extension);
-int test_extension(const char *file_name, const char *extension);
+char *remove_filename(char *url);
 
 int main (void)
 {
-	char s1[STR_LENGTH] = "test.exe", s2[STR_LENGTH] = "EXe";
+	char s1[STR_LENGTH] = "http://www.knking.com/index.html";
 
-	if(test_extension(s1, s2))
-		printf("true");
-	else
-		printf("false");
+	puts(remove_filename(s1));
 
 	return 0;
 }
 
-int test_extension(const char *file_name, const char *extension)
+char *remove_filename(char *url)
 {
-	char temp[STR_LENGTH];
-	int i = 0;
+	int i = strlen(url);
 
-	get_extension(file_name, temp);
-	while(temp[i++])
-		if(toupper(temp[i]) != toupper(extension[i]))
-			return false;
+	while(url[--i] != '/')
+	/* intentionally null */;
+	url[i] = '\0';
 
-	return true;
-}
-
-void get_extension(const char *file_name, char *extension)
-{
-	int i = strlen(file_name);
-
-	while(file_name[i--] != '.')
-	{
-		if (i == 0)
-		{
-			strcpy(extension, "");
-			return;
-		}
-	}
-	strcpy(extension, &file_name[i + 2]);
-	return;
+	return url;
 }
