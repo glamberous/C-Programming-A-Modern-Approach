@@ -9,28 +9,19 @@ arguments with strings in the planets array. */
 
 #define NUM_PLANETS 9
 
+bool string_equal(char *, char *);
+
 int main(int argc, char *argv[])
 {
 	char *planets[] = {"Mercury", "Venus", "Earth", "Mars", "Jupiter",
 											"Saturn", "Uranus", "Neptune", "Pluto"};
-	char argv_temp[100] = {""}, planets_temp[9] = {""};
-	int i, j, x;
+	int i, j;
 
 	for (i = 1; i < argc; i++)
 	{
-		for(x = 0; argv[i][x] != '\0'; x++)
-		{
-			argv_temp[x] = tolower(argv[i][x]);
-		}
-
 		for(j = 0; j < NUM_PLANETS; j++)
 		{
-			for(x = 0; planets[j][x] != '\0'; x++)
-			{
-				planets_temp[x] = tolower(planets[i][x]);
-			}
-
-			if (strcmp(argv_temp, planets_temp) == 0)
+			if (string_equal(argv[i], planets[j]))
 			{
 				printf("%s is planet %d\n", argv[i], j + 1);
 				break;
@@ -40,4 +31,18 @@ int main(int argc, char *argv[])
 			printf("%s is not a planet\n", argv[i]);
 	}
 	return 0;
+}
+
+bool string_equal(char *input, char *planet)
+{
+	int i;
+
+	for(i = 0; tolower(input[i]) == tolower(planet[i]); i++)
+	{
+		if (input[i] == '\0')
+		{
+			return true;
+		}
+	}
+	return false;
 }
