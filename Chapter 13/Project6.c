@@ -11,24 +11,23 @@ arguments with strings in the planets array. */
 
 int main(int argc, char *argv[])
 {
-	char planets[][8] = {"Mercury", "Venus", "Earth", "Mars", "Jupiter",
+	char *planets[] = {"Mercury", "Venus", "Earth", "Mars", "Jupiter",
 											"Saturn", "Uranus", "Neptune", "Pluto"};
-
-	char argv_temp[100] = {""}, planets_temp[8] = {""};
+	char argv_temp[100] = {""}, planets_temp[9] = {""};
 	int i, j, x;
 
 	for (i = 1; i < argc; i++)
 	{
+		for(x = 0; argv[i][x] != '\0'; x++)
+		{
+			argv_temp[x] = tolower(argv[i][x]);
+		}
+
 		for(j = 0; j < NUM_PLANETS; j++)
 		{
-			for(x = 0; argv[i][x] != '\0'; x++)
-			{
-				argv_temp[x] = tolower(argv[i][x]);
-			}
-
 			for(x = 0; planets[j][x] != '\0'; x++)
 			{
-				planets_temp[x] = tolower(planets[j][x]);
+				planets_temp[x] = tolower(planets[i][x]);
 			}
 
 			if (strcmp(argv_temp, planets_temp) == 0)
@@ -36,10 +35,9 @@ int main(int argc, char *argv[])
 				printf("%s is planet %d\n", argv[i], j + 1);
 				break;
 			}
-			if (j == NUM_PLANETS)
-				printf("%s is not a planet\n", argv[i]);
 		}
-
-		return 0;
+		if (j == NUM_PLANETS)
+			printf("%s is not a planet\n", argv[i]);
 	}
+	return 0;
 }
