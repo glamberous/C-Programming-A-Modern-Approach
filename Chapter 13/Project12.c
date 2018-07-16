@@ -5,21 +5,25 @@
 #define MAX_CHAR 20
 #define MAX_WORDS 30
 
-void fill_word_array(char [MAX_WORDS + 1][MAX_CHAR + 1]);
+void fill_word_array(char [MAX_WORDS + 1][MAX_CHAR + 1], char *);
 
 int main(void)
 {
-	char words[MAX_WORDS+1][MAX_CHAR+1], punctuation = '\0';
+	char words[MAX_WORDS+1][MAX_CHAR+1] = {'\0'}, punctuation = '\0';
 	int i = 0;
 
 
 	printf ("Enter a sentence to be reversed: ");
-	fill_word_array(words);
+	fill_word_array(words, &punctuation);
 
-	for(i = 0; i < MAX_WORDS; i++)
+	/*for(i = 0; i < MAX_WORDS; i++)
 	{
 		printf("%s", words[i]);
-	}
+	}*/
+	puts(words[0]);
+	puts(words[1]);
+	puts(words[2]);
+	putchar(punctuation);
 
 	return 0;
 }
@@ -28,27 +32,32 @@ int main(void)
 
 
 
-void fill_word_array(char words[MAX_WORDS + 1][MAX_CHAR + 1])
+void fill_word_array(char words[MAX_WORDS + 1][MAX_CHAR + 1], char *punctuation)
 	{
-		int i = 1;
-		char *p = &words[0][0];
+		int i = 0;
+		char *p = words[0], temp = '\0';
 
 		while (1)
 		{
 			//*p = getchar();
-			while (isalpha(*p) == 0)
+			while (isalpha(temp) == 0)
 			{
-				if (*p == '\n')
+				if (temp == '!' || temp == '.' || temp == '?')
+				{
+					*punctuation = temp;
+				}
+				else if (temp == '\n')
 				{
 					return;
 				}
-				*(p++) = getchar();
+				temp = getchar();
 			}
 
-			while (isalpha(*p) != 0)
+			while (isalpha(temp) != 0)
 			{
-				*(p++) = getchar();
+				*(p++) = temp;
+				temp = getchar();
 			}
-			p = words[i++];
+			p = words[++i];
 		}
 	}
