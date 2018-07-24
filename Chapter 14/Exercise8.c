@@ -1,29 +1,27 @@
-/*
-Suppose we want a macro that expands into a string containing the current line number
-and file name. In other words, we'd like to write
+/* Suppose we want a macro that expands into a string containing the current line
+number and file name. In other words, we'd like to write
 const char *str = LINE_FILE;
 and have it expand into
 const char *str = "Line 10 of file foo.c";
-Where foo.c is the file containing the program and 10 is the line on which the invocation
-of LINE_FILE appears.
+where foo.c is the file containing the program and 10 is the line on which the
+invocation of LINE_FILE appears.
 */
 
 #include <string.h>
 #include <stdio.h>
 
-#define GENERIC_MAX(type)					\
-type type##_max(type x, type y)		\
-{																	\
-	return x > y ? x : y;						\
-}
 
-GENERIC_MAX(int)
+#define STRINGIZE(x) #x
+// Converts int to string
+
+#define xSTRINGIZE(x) STRINGIZE(x)
+// Converts __LINE__ to INT, without this it'd just stringize "__LINE__"
+
+#define LINE_FILE "Line "xSTRINGIZE(__LINE__)" of file "__FILE__
 
 int main (void)
 {
-	int x = 100, y = 300;
+	const char *str = LINE_FILE;
 
-	printf("%d", int_max(x,y));
-
-	return 0;
+	puts(str);
 }
