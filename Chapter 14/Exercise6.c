@@ -1,9 +1,13 @@
-/* Define TOUPPER as: */
+/*
+Write a macro DISP(f,x) that expands into a call of printf that displays the
+value of the function f when called with argument x. For example,
+DISP(sqrt, 3.0);
+should expand into
+printf("sqrt(%g) = %g\n", 3.0, sqrt(3.0));
+*/
 
-#define TOUPPER(c) ('a' <= (c)&&(c) <= 'z'?(c)-'a'+'A':(c))
-
-/* Let s be a string and let i be an int variable. Show the output produced by
-each of the following prgram fragments. */
+#define DISP(f,y) printf("sqrt(%g) = %g\n", y, f(y))
+#define DISP2(x,y,f) printf("sqrt(%s,%s) ", x, y); printf("= %s\n", f(x,y))
 
 #include <string.h>
 #include <stdio.h>
@@ -12,18 +16,9 @@ each of the following prgram fragments. */
 
 int main (void)
 {
-	char s[STR_MAX];
-	int i = 0;
+	float y = 9;
+	char str1[6] = {"B"}, str2[6] = {"leep"};
 
-	strcpy(s, "abcd");
-	i = 0;
-	putchar(TOUPPER(s[++i]));
-	putchar('\n');
-	printf("I predicted it would output as \"aBCD\"\n");
-
-	strcpy(s, "0123");
-	i = 0;
-	putchar(TOUPPER(s[++i]));
-	putchar('\n');
-	printf("I predicted it would output as \"0123\"\n");
+	DISP(sqrt,y);
+	DISP2(str1, str2, strcat);
 }
