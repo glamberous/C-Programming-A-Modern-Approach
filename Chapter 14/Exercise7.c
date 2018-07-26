@@ -1,6 +1,4 @@
-/*
-Let GENERIC_MAX be the following macro:
-*/
+
 #include <string.h>
 #include <stdio.h>
 
@@ -11,6 +9,7 @@ type type##_max(type x, type y)		\
 }
 
 GENERIC_MAX(int)
+GENERIC_MAX(float)
 
 int main (void)
 {

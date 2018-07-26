@@ -10,14 +10,13 @@ invocation of LINE_FILE appears.
 #include <string.h>
 #include <stdio.h>
 
-
-#define STRINGIZE(x) #x
+#define xSTRINGIZE(x) #x
 // Converts int to string
 
-#define xSTRINGIZE(x) STRINGIZE(x)
+#define STRINGIZE(x) xSTRINGIZE(x)
 // Converts __LINE__ to INT, without this it'd just stringize "__LINE__"
 
-#define LINE_FILE "Line "xSTRINGIZE(__LINE__)" of file "__FILE__
+#define LINE_FILE "Line "STRINGIZE(__LINE__)" of file "__FILE__
 
 int main (void)
 {
