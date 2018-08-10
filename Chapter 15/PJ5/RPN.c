@@ -4,13 +4,10 @@ stack.h and stack.c files. As described in Section 15.2. */
 #include <stdio.h>			//printf / scanf
 #include "Stack.h"
 
-int contents[STACK_SIZE] = {0};
-int top = 0;
-
 int main(void)
 {
 	char ch = 0;
-	int temp1 = 0, temp2 = 0;
+	int temp1 = 0, temp2 = 0; 
 
 	printf("Enter an RPN experession: ");
 

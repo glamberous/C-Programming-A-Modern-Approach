@@ -2,7 +2,9 @@
 #include <stdio.h>			//printf / scanf
 #include "Stack.h"
 #include <stdlib.h>
-#include <stdbool.h>
+
+int top = 0;
+int contents[STACK_SIZE] = {0};
 
 void make_empty(void)
 {
