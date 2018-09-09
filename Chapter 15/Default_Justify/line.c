@@ -41,7 +41,7 @@ void write_line(void)
 
   extra_spaces = MAX_LINE_LEN - line_len;
 
-  for(i = 0, j < line_len; i++)
+  for(i = 0; i < line_len; i++)
   {
     if (line[i] != ' ')
       putchar(line[i]);
