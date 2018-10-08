@@ -1,6 +1,4 @@
-# redact
+# C Programming A Modern Approach, 2nd Edition
 
-
-Hello, this is my first edit to be committed!
-Zip zip zippy!
+These are my assignments I completed when going through the book.
 
