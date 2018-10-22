@@ -1,6 +1,0 @@
-//City Unlock Setting$%###1,162,620*$!234 testing
-MaxServerAvailableCities: 102
-Testing
-Test
-
-Blah
