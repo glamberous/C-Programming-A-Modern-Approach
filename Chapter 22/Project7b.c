@@ -34,20 +34,36 @@ massage if its command-line argument doesn't end with the .rle extension.
 #include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <string.h>
 
 void print_line(int *ch);
 
 int main(int argc, char *argv[])
 {
-  FILE *fp;
+  FILE *fp1, *fp2;
 
-  if ((fp = fopen(argv[1], "rb")) == NULL)
+  if ((fp1 = fopen(argv[1], "rb")) == NULL)
   {
     printf("%s can't be opened\n", argv[1]);
     exit(EXIT_FAILURE);
   }
 
-  
+  char *filename = argv[1];
+  filename[(strlen(filename) - 4)] = '\0';
 
+  if ((fp2 = fopen(filename, "wb")) == NULL)
+  {
+    printf("%s can't be opened\n", argv[1]);
+    exit(EXIT_FAILURE);
+  }
+
+  unsigned int ch = 0, seq_bytes = 0;
+
+  for(seq_bytes = fgetc(fp1); ch != EOF && seq_bytes != EOF; seq_bytes = fgetc(fp1))
+    for (ch = fgetc(fp1); seq_bytes > 0; seq_bytes--)
+      fputc(ch, fp2);
+
+  fclose(fp1);
+  fclose(fp2);
   return 0;
 }
