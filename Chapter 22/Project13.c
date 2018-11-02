@@ -28,7 +28,7 @@ original project:
 
 char calculate_AM_PM(int *hours);
 
-int main(int argc, char *arg[])
+int main(int argc, char *argv[])
 {
   char AM_PM = 0;
   int stdin_midnight = 0, file_midnight = 0, hours = 0, minutes = 0;
@@ -45,8 +45,8 @@ int main(int argc, char *arg[])
     stdin_midnight -= 720;
 
   FILE *flight_list = NULL;
-  if ((flight_list = fopen(arg[1], "rb")) == NULL) {
-    printf("%s can't be opened\n", arg[1]);
+  if ((flight_list = fopen(argv[1], "rb")) == NULL) {
+    printf("%s can't be opened\n", argv[1]);
     exit(EXIT_FAILURE);
   }
 
